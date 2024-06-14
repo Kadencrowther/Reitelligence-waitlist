@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reitelligence Waitlist</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Background color changed to black */
+            color: #fff;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
+        .container {
+            width: 100vw;
+        }
+        .video-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-section iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .form-container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 100vh auto; /* Ensure the form is well below the video section */
+            padding: 40px; /* Increase padding */
+            background-color: #000; /* Form container background color changed to black */
+            color: #fff; /* Form text color changed to white */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-height: 100vh; /* Make sure the form section is at least as tall as the viewport */
+        }
+        .form-container h1 {
+            font-size: 2rem; /* Increase heading size */
+        }
+        .form-container p {
+            font-size: 1.2rem; /* Increase paragraph size */
+            margin-bottom: 40px; /* Increase bottom margin */
+        }
+        .form-container input {
+            display: block;
+            margin: 20px auto; /* Center input fields */
+            padding: 15px; /* Increase padding */
+            width: 80%; /* Increase width */
+            max-width: 400px; /* Increase max-width */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff; /* Input background color changed to white */
+            color: #000; /* Input text color changed to black */
+            font-size: 1rem; /* Increase font size */
+        }
+        .form-container button {
+            padding: 15px 30px; /* Increase padding */
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem; /* Increase font size */
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-section">
+            <iframe src="https://www.loom.com/embed/aca065741ef940cea2c3e37045198734" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div class="form-container" id="formContainer">
+            <h1>Join the Reitelligence Waitlist</h1>
+            <p>We're opening new spots every day for people excited about trying a new way of analyzing real estate data.</p>
+            <form id="waitlistForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="phone" placeholder="Phone" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="interest" placeholder="Why are you interested in Reitelligence?" required>
+                <button type="submit">Join Waitlist</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // JavaScript to scroll down to the form after 5 seconds
+        setTimeout(() => {
+            document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth' });
+        }, 5000); // 5 seconds
+
+        // JavaScript to handle form submission
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const data = new FormData(form);
+            
+            fetch('https://script.google.com/macros/s/AKfycbyoOJacf3fwDnNH4TPPuES8A84hby3vmlbKnxreDIrXB3EbaZ3Saa50SAc61xLhPk5Drg/exec', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(response => {
+                if(response.result === 'success') {
+                    alert('Thank you for joining the waitlist!');
+                    form.reset();
+                } else {
+                    alert('There was an error. Please try again.');
+                }
+            })
+            .catch(error => {
+                alert('There was an error. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
